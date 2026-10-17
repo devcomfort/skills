@@ -21,6 +21,16 @@ Format a round like so:
 ➡️ <your recommended answer>
 ```
 
+Rules for every question:
+
+**Give the target an address.** Name what is being decided with something the user can open — a Notion page link, a file path, a commit hash — not an internal label like "option 2" or "that page". If they cannot open it, they cannot answer.
+
+**Never drop an option, and let the body run long.** Every option carries what it changes, why you propose it, what actually happens if they choose it, its cost or risk, and whether it can be undone. A question that hides an option hides a decision.
+
+**State the default.** Say what happens if no answer comes. Silence is not a decision, and an unstated default turns it into one.
+
+**Repeat unanswered questions verbatim.** The user sees only your last message: every reply repeats the questions still open, word for word, and drops the answered ones.
+
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
 
 Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The _decisions_ are the user's: put each to them and wait.
